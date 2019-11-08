@@ -1,8 +1,12 @@
 package co.nicolaspr.analizadorSintactico;
 
+import java.util.ArrayList;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import co.nicolaspr.analizadorLexico.Token;
+import co.nicolaspr.analizadorSemantico.Simbolo;
+import co.nicolaspr.analizadorSemantico.TablaSimbolos;
 /**
  * Esta clase nos ayuda a crear una asignacion de variable
  * 
@@ -36,6 +40,18 @@ public class AsignacionDeVariable extends Sentencia {
 		nodo.add(termino.getArbolVisual());
 
 		return nodo;
+	}
+
+	@Override
+	protected void crearTablaSimbolo(TablaSimbolos tablaSimbolos, ArrayList<String> errores, Simbolo ambito) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void analizarSemantica(TablaSimbolos tablaSimbolos, ArrayList<String> errores, Simbolo ambito) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

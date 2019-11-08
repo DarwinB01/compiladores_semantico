@@ -5,15 +5,16 @@ import java.util.ArrayList;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import co.nicolaspr.analizadorLexico.Token;
+import co.nicolaspr.analizadorSemantico.Simbolo;
+import co.nicolaspr.analizadorSemantico.TablaSimbolos;
 
 /**
- * 
  * Esta clase nos ayuda a crear funciones
  * 
  * @author Darwin Bonilla, Nicolas Rios y Santiago Vargas
  * @version 1.0.0
  *
- * <Funcion>::=fun<tipoRetorno>identificador"("[<listaParametro>]")""{"[<listaDeSentencia>]"}"
+ *          <Funcion>::=fun<tipoRetorno>identificador"("[<listaParametro>]")""{"[<listaDeSentencia>]"}"
  */
 public class Funcion {
 
@@ -22,6 +23,8 @@ public class Funcion {
 	private Token parDer, llaveIzq;
 	private ArrayList<Sentencia> sentencias;
 	private Token llaveDer;
+	private Simbolo ambito;
+	private Expresion expresion;
 
 	public Funcion(Token palabraFun, Token tipoRetorno, Token identificador, Token parIzq,
 			ArrayList<Parametro> parametros, Token parDer, Token llaveIzq, ArrayList<Sentencia> sentencias,
@@ -50,10 +53,10 @@ public class Funcion {
 		DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Funcion");
 		raiz.add(new DefaultMutableTreeNode(identificador.getLexema()));
 
-		if(tipoRetorno!=null) {
-			raiz.add( new DefaultMutableTreeNode("Tipo de retorno: "+tipoRetorno.getLexema()) );	
+		if (tipoRetorno != null) {
+			raiz.add(new DefaultMutableTreeNode("Tipo de retorno: " + tipoRetorno.getLexema()));
 		}
-		
+
 		if (parametros != null) {
 			DefaultMutableTreeNode parametrosNodo = new DefaultMutableTreeNode("Parametros");
 			for (Parametro p : parametros) {
@@ -73,6 +76,37 @@ public class Funcion {
 		}
 
 		return raiz;
+	}
+
+	public ArrayList<String> getTipoParams() {
+
+		ArrayList<String> lista = new ArrayList<>();
+
+		for (Parametro parametro : parametros) {
+			lista.add(parametro.getTipoDato().getLexema());
+		}
+
+		return lista;
+
+	}
+
+	public void crearTablaSimbolos(TablaSimbolos tablaSimbolos, ArrayList<String> errores) {
+		ambito = tablaSimbolos.guardarSimboloFuncion(palabraFun.getLexema(), tipoRetorno.getLexema(), getTipoParams());
+
+		for (Parametro parametro : parametros) {
+			tablaSimbolos.guardarSimboloVariable(parametro.getNombre().getLexema(), parametro.getTipoDato().getLexema(),
+					parametro.getNombre().getFila(), parametro.getNombre().getColumna(), ambito, expresion);
+		}
+		for (Sentencia sentencia : sentencias) {
+			sentencia.crearTablaSimbolo(tablaSimbolos, errores, ambito);
+		}
+	}
+
+	public void analizarSemantica(TablaSimbolos tablaSimbolos, ArrayList<String> errores) {
+		for (Sentencia sent : sentencias) {
+			sent.analizarSemantica(tablaSimbolos, errores, ambito);
+		}
+
 	}
 
 }

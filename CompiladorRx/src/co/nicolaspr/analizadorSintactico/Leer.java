@@ -1,5 +1,6 @@
 package co.nicolaspr.analizadorSintactico;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -7,6 +8,8 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import co.nicolaspr.analizadorLexico.Token;
+import co.nicolaspr.analizadorSemantico.Simbolo;
+import co.nicolaspr.analizadorSemantico.TablaSimbolos;
 /**
  * Esta clase nos ayuda a crear una lectura, en este caso es lo que decimos para que el compilador identifique
  * que eso se quiere ingresar
@@ -38,6 +41,18 @@ public class Leer extends Sentencia {
 
 		nodo.add(new DefaultMutableTreeNode("Identificador: " + id.getLexema()));
 		return nodo;
+	}
+
+	@Override
+	protected void crearTablaSimbolo(TablaSimbolos tablaSimbolos, ArrayList<String> errores, Simbolo ambito) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void analizarSemantica(TablaSimbolos tablaSimbolos, ArrayList<String> errores, Simbolo ambito) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

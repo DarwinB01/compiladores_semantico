@@ -1,8 +1,12 @@
 package co.nicolaspr.analizadorSintactico;
 
+import java.util.ArrayList;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import co.nicolaspr.analizadorLexico.Token;
+import co.nicolaspr.analizadorSemantico.Simbolo;
+import co.nicolaspr.analizadorSemantico.TablaSimbolos;
 /**
  * Esta clase sirve para la creacion de un retorno en el lengiaje Rx
  * 
@@ -30,6 +34,16 @@ public class Retorno extends Sentencia{
 		nodo.add(expresion.getArbolVisual());
 		
 		return nodo;
+	}
+	@Override
+	protected void crearTablaSimbolo(TablaSimbolos tablaSimbolos, ArrayList<String> errores, Simbolo ambito) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	protected void analizarSemantica(TablaSimbolos tablaSimbolos, ArrayList<String> errores, Simbolo ambito) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

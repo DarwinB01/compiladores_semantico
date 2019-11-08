@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import co.nicolaspr.analizadorLexico.Token;
+import co.nicolaspr.analizadorSemantico.Simbolo;
+import co.nicolaspr.analizadorSemantico.TablaSimbolos;
 /**
  * Esta clase nos ayuda a crear una condicion
  * 
@@ -55,6 +57,18 @@ public class Condicion extends Sentencia {
 		}
 
 		return nodo;
+	}
+
+	@Override
+	protected void crearTablaSimbolo(TablaSimbolos tablaSimbolos, ArrayList<String> errores, Simbolo ambito) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void analizarSemantica(TablaSimbolos tablaSimbolos, ArrayList<String> errores, Simbolo ambito) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

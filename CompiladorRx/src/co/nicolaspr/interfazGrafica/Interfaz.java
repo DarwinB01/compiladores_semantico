@@ -25,6 +25,7 @@ import javax.swing.tree.DefaultTreeModel;
 import co.nicolaspr.analizadorLexico.AnalizadorLexico;
 import co.nicolaspr.analizadorLexico.ErrorLexico;
 import co.nicolaspr.analizadorLexico.Token;
+import co.nicolaspr.analizadorSemantico.AnalizadorSemantico;
 import co.nicolaspr.analizadorSintactico.AnalizadorSintactico;
 import co.nicolaspr.analizadorSintactico.ErrorSintactico;
 import co.nicolaspr.analizadorSintactico.UnidadDeCompilacion;
@@ -50,6 +51,7 @@ public class Interfaz extends JFrame implements ActionListener {
 	private JTree arbolVisual;
 	private AnalizadorSintactico analizadorSintactico;
 	private JTabbedPane pestanias;
+	private AnalizadorSemantico analizadorSemantico;
 
 	/**
 	 * Costructor de la clase, se inicializan todos los componentes
@@ -199,6 +201,10 @@ public class Interfaz extends JFrame implements ActionListener {
 
 				arbolVisual
 						.setModel(new DefaultTreeModel(analizadorSintactico.getUnidadDeCompilacion().getArbolVisual()));
+				
+				analizadorSemantico.llenarTablaSimbolos();
+				analizadorSemantico.analizarSemantica();
+				
 				agregarTokensATabla();
 
 			} else {
@@ -258,6 +264,8 @@ public class Interfaz extends JFrame implements ActionListener {
 
 			modeloError.addRow(fila1);
 		}
+		
+		
 
 	}
 
