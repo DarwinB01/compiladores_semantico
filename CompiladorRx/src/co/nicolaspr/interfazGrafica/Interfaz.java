@@ -42,7 +42,8 @@ public class Interfaz extends JFrame implements ActionListener {
 	private JButton btnAnalizar, btnLimpiar;
 	private AnalizadorLexico analizador;
 	private JTable tablaSimbolos, tablaDesconocidos, tablaErrores;
-	private JScrollPane scrollTSimbolos, scrollTDesconocidos, scrollTErrores, scrollSintactico, scrollPestanias;
+	private JScrollPane scrollTSimbolos, scrollTDesconocidos, scrollTErrores, scrollSintactico, scrollPestanias,
+			scrollPestanias2, scrollSemantico;
 	private DefaultTableModel modelo, modeloDesconocido, modeloError;
 	private ArrayList<Token> lista;
 	private ArrayList<ErrorLexico> listaError;
@@ -50,7 +51,7 @@ public class Interfaz extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTree arbolVisual;
 	private AnalizadorSintactico analizadorSintactico;
-	private JTabbedPane pestanias;
+	private JTabbedPane pestanias, pestanias2;
 	private AnalizadorSemantico analizadorSemantico;
 
 	/**
@@ -147,11 +148,22 @@ public class Interfaz extends JFrame implements ActionListener {
 		contentPane.add(scrollTErrores);
 
 		/**
+		 * Arbol visual
+		 */
+		arbolVisual = new JTree();
+		scrollSintactico = new JScrollPane(arbolVisual);
+		scrollSintactico.setBounds(400, 20, 300, 380);
+		contentPane.add(scrollSintactico);
+
+		scrollSemantico = new JScrollPane();
+		scrollSemantico.setBounds(400, 20, 300, 380);
+		contentPane.add(scrollSemantico);
+
+		/**
 		 * Pestañas
 		 */
 
 		pestanias = new JTabbedPane();
-
 		pestanias.add("TABLA DE SIMBOLOS VALIDOS", scrollTSimbolos);
 		pestanias.add("TABLA DE SIMBOLOS DESCONOCIDOS", scrollTDesconocidos);
 		pestanias.add("TABLA DE ERRORES", scrollTErrores);
@@ -161,12 +173,18 @@ public class Interfaz extends JFrame implements ActionListener {
 		scrollPestanias.setVisible(true);
 		contentPane.add(scrollPestanias);
 
-		arbolVisual = new JTree();
-		scrollSintactico = new JScrollPane(arbolVisual);
-		scrollSintactico.setBounds(400, 20, 300, 380);
+		pestanias2 = new JTabbedPane();
+		pestanias2.add("ARBOL SINTACTICO", scrollSintactico);
+		pestanias2.add("ERRORES SEMANTICOS", scrollSemantico);
 
-		contentPane.add(scrollSintactico);
+		scrollPestanias2 = new JScrollPane(pestanias2);
+		scrollPestanias2.setBounds(400, 20, 340, 380);
+		scrollPestanias2.setVisible(true);
+		contentPane.add(scrollPestanias2);
 
+		/**
+		 * Botones
+		 */
 		btnAnalizar = new JButton("Analizar");
 		btnAnalizar.setBounds(60, 30, 100, 30);
 		btnAnalizar.addActionListener(this);
@@ -201,10 +219,10 @@ public class Interfaz extends JFrame implements ActionListener {
 
 				arbolVisual
 						.setModel(new DefaultTreeModel(analizadorSintactico.getUnidadDeCompilacion().getArbolVisual()));
-				
-				analizadorSemantico.llenarTablaSimbolos();
-				analizadorSemantico.analizarSemantica();
-				
+
+//				analizadorSemantico.llenarTablaSimbolos();
+//				analizadorSemantico.analizarSemantica();
+
 				agregarTokensATabla();
 
 			} else {
@@ -264,8 +282,6 @@ public class Interfaz extends JFrame implements ActionListener {
 
 			modeloError.addRow(fila1);
 		}
-		
-		
 
 	}
 
