@@ -220,8 +220,9 @@ public class Interfaz extends JFrame implements ActionListener {
 				arbolVisual
 						.setModel(new DefaultTreeModel(analizadorSintactico.getUnidadDeCompilacion().getArbolVisual()));
 
-//				analizadorSemantico.llenarTablaSimbolos();
-//				analizadorSemantico.analizarSemantica();
+				analizadorSemantico = new AnalizadorSemantico(analizadorSintactico.getUnidadDeCompilacion());
+				analizadorSemantico.llenarTablaSimbolos();
+				analizadorSemantico.analizarSemantica();
 
 				agregarTokensATabla();
 
