@@ -73,4 +73,10 @@ public class ExpresionLogica extends Expresion{
 		return nodo;
 	}
 
+	@Override
+	public String getJavaCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

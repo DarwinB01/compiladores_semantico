@@ -35,7 +35,7 @@ public class TablaSimbolos {
 
 			return nuevo;
 		} else {
-			listaErrores.add("La variable " + nombre + " ya existe en el ámbito " + ambito);
+			listaErrores.add("La variable " + nombre + " ya existe en el ambito " + ambito);
 		}
 
 		return null;

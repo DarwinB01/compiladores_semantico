@@ -27,6 +27,11 @@ public class ExpresionCadena extends Expresion{
 		DefaultMutableTreeNode nodo = new DefaultMutableTreeNode("Cadena");
 		return nodo;
 	}
+	@Override
+	public String getJavaCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

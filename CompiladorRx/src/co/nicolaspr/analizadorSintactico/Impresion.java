@@ -60,4 +60,10 @@ public class Impresion extends Sentencia {
 		
 	}
 
+	@Override
+	public String getJavaCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

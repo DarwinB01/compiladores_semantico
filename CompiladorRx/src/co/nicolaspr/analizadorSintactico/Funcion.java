@@ -1,5 +1,9 @@
 package co.nicolaspr.analizadorSintactico;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -107,6 +111,33 @@ public class Funcion {
 			sent.analizarSemantica(tablaSimbolos, errores, ambito);
 		}
 
+	}
+
+	public String getJavaCode() {
+
+		String tipoR = "void";
+		if (tipoRetorno != null) {
+
+			tipoR = tipoRetorno.getJavaCode();
+		}
+
+		String codigo = "public  static " + tipoRetorno.getJavaCode() + " " + identificador.getJavaCode() + "(";
+
+		if (parametros.size() > 0) {
+			for (Parametro parametro : parametros) {
+				codigo += parametro.getJavaCode() + ", ";
+			}
+			codigo = codigo.substring(0, codigo.length() - 2);
+		}
+		codigo += "){";
+
+		for (Sentencia sentencia : sentencias) {
+			codigo += sentencia.getJavaCode();
+
+		}
+		codigo += "}";
+
+		return codigo;
 	}
 
 }

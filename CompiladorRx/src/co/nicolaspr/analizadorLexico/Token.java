@@ -61,4 +61,25 @@ public class Token {
 	public DefaultMutableTreeNode getArbolVisual() {
 		return null;
 	}
+
+	public String getJavaCode() {
+
+		if (categoria == Categoria.PALABRA_RESERVADA) {
+			if (lexema.equals("entero")) {
+				return "int";
+			}
+			if (lexema.equals("decimal")) {
+				return "double";
+			}
+			if (lexema.equals("vacio")) {
+				return "void";
+			}
+			if (lexema.equals("logico")) {
+				return "boolean";
+			}
+		} else if (categoria == Categoria.CADENA_CARACTERES) {
+			return lexema.replaceAll("¡", "\"");
+		}
+		return lexema;
+	}
 }

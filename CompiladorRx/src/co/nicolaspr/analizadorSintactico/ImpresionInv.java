@@ -53,4 +53,10 @@ public class ImpresionInv extends Sentencia {
 		
 	}
 
+	@Override
+	public String getJavaCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

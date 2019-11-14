@@ -45,6 +45,11 @@ public class Retorno extends Sentencia{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public String getJavaCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

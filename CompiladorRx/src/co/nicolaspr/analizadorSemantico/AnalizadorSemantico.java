@@ -46,4 +46,19 @@ public class AnalizadorSemantico {
 		this.erroresSemanticos = erroresSemanticos;
 	}
 
+	/**
+	 * @return the uc
+	 */
+	public UnidadDeCompilacion getUc() {
+		return uc;
+	}
+
+	/**
+	 * @param uc the uc to set
+	 */
+	public void setUc(UnidadDeCompilacion uc) {
+		this.uc = uc;
+	}
+	
+
 }

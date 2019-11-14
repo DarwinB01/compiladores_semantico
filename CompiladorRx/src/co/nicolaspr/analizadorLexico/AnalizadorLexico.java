@@ -261,7 +261,7 @@ public class AnalizadorLexico {
 			obtenerSiguienteCaracter();
 			return true;
 		}
-		while (caracterActual != '!') {
+		while (caracterActual != '¡') {
 			lexema += caracterActual;
 			obtenerSiguienteCaracter();
 			if (caracterActual == caracterFinDeCodigo) {

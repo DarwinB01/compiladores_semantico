@@ -59,5 +59,21 @@ public class UnidadDeCompilacion {
 		}
 
 	}
+	
+	public String getJavaCode() {
+		
+		String codigo = "import javax.swing.JOptionPana; public class Principal{";
+		
+		for (Funcion funcion : listaFunciones) {
+			
+			codigo+=funcion.getJavaCode();
+			
+		}
+		codigo+="}";
+		
+		
+		return codigo;
+	}
+	
 
 }

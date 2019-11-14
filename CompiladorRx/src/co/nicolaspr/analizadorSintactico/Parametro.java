@@ -33,6 +33,10 @@ public class Parametro {
 
 		return nodo;
 	}
+	
+	public String getJavaCode() {
+		return tipoDato.getJavaCode()+" "+nombre.getJavaCode();
+	}
 
 	/**
 	 * @return the nombre

@@ -66,4 +66,10 @@ public class ExpresionAritmeticaAuxiliar extends Expresion {
 		return "ExpresionAritmeticaAuxiliar [operador=" + operador + ", eA=" + eA + ", eAux=" + eAux + "]";
 	}
 
+	@Override
+	public String getJavaCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

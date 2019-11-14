@@ -20,4 +20,6 @@ public abstract class Sentencia {
 
 	protected abstract void analizarSemantica(TablaSimbolos tablaSimbolos, ArrayList<String> errores, Simbolo ambito);
 
+	public abstract String getJavaCode();
+
 }

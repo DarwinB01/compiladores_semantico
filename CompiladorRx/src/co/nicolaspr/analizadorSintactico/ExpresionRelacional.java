@@ -94,4 +94,10 @@ public class ExpresionRelacional extends Expresion {
 		return nodo;
 	}
 
+	@Override
+	public String getJavaCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
