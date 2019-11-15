@@ -36,62 +36,6 @@ public class Simbolo {
 		this.tipoParametros = tipoParametros;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public int getFila() {
-		return fila;
-	}
-
-	public void setFila(int fila) {
-		this.fila = fila;
-	}
-
-	public int getColumna() {
-		return columna;
-	}
-
-	public void setColumna(int columna) {
-		this.columna = columna;
-	}
-
-	public Simbolo getAmbito() {
-		return ambito;
-	}
-
-	public void setAmbito(Simbolo ambito) {
-		this.ambito = ambito;
-	}
-
-	public Expresion getExpresion() {
-		return expresion;
-	}
-
-	public void setExpresion(Expresion expresion) {
-		this.expresion = expresion;
-	}
-
-	public ArrayList<String> getTipoParametros() {
-		return tipoParametros;
-	}
-
-	public void setTipoParametros(ArrayList<String> tipoParametros) {
-		this.tipoParametros = tipoParametros;
-	}
-
 	@Override
 	public String toString() {
 		return "Simbolo [nombre=" + nombre + ", tipo=" + tipo + ", fila=" + fila + ", columna=" + columna + ", ambito="
@@ -158,6 +102,62 @@ public class Simbolo {
 		}
 
 		return true;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public int getFila() {
+		return fila;
+	}
+
+	public void setFila(int fila) {
+		this.fila = fila;
+	}
+
+	public int getColumna() {
+		return columna;
+	}
+
+	public void setColumna(int columna) {
+		this.columna = columna;
+	}
+
+	public Simbolo getAmbito() {
+		return ambito;
+	}
+
+	public void setAmbito(Simbolo ambito) {
+		this.ambito = ambito;
+	}
+
+	public Expresion getExpresion() {
+		return expresion;
+	}
+
+	public void setExpresion(Expresion expresion) {
+		this.expresion = expresion;
+	}
+
+	public ArrayList<String> getTipoParametros() {
+		return tipoParametros;
+	}
+
+	public void setTipoParametros(ArrayList<String> tipoParametros) {
+		this.tipoParametros = tipoParametros;
 	}
 
 }

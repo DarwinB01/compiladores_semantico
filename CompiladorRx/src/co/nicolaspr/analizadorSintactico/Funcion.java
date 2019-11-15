@@ -95,7 +95,7 @@ public class Funcion {
 	}
 
 	public void crearTablaSimbolos(TablaSimbolos tablaSimbolos, ArrayList<String> errores) {
-		ambito = tablaSimbolos.guardarSimboloFuncion(palabraFun.getLexema(), tipoRetorno.getLexema(), getTipoParams());
+		ambito = tablaSimbolos.guardarSimboloFuncion(identificador.getLexema(), tipoRetorno.getLexema(), getTipoParams());
 
 		for (Parametro parametro : parametros) {
 			tablaSimbolos.guardarSimboloVariable(parametro.getNombre().getLexema(), parametro.getTipoDato().getLexema(),

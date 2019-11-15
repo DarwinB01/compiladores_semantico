@@ -41,12 +41,12 @@ import co.nicolaspr.analizadorSintactico.UnidadDeCompilacion;
  */
 public class Interfaz extends JFrame implements ActionListener {
 
-	private JTextArea jArea;
+	private JTextArea jArea, jAreaSemantica;
 	private JButton btnAnalizar, btnLimpiar;
 	private AnalizadorLexico analizador;
-	private JTable tablaSimbolos, tablaDesconocidos, tablaErrores, tablaSemantica;
+	private JTable tablaSimbolos, tablaDesconocidos, tablaErrores;
 	private JScrollPane scrollTSimbolos, scrollTDesconocidos, scrollTErrores, scrollSintactico, scrollPestanias,
-			scrollSemantico;
+			scrollSemantico, scrollPestanias2;
 	private DefaultTableModel modelo, modeloDesconocido, modeloError, modeloSemantico;
 	private ArrayList<Token> lista;
 	private ArrayList<ErrorLexico> listaError;
@@ -54,9 +54,9 @@ public class Interfaz extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTree arbolVisual;
 	private AnalizadorSintactico analizadorSintactico;
-	private JTabbedPane pestanias;
+	private JTabbedPane pestanias, pestanias2;
 	private AnalizadorSemantico analizadorSemantico;
-	private ArrayList<Simbolo> listaSemantica;
+	private ArrayList<String> listaSemantica;
 
 	/**
 	 * Costructor de la clase, se inicializan todos los componentes
@@ -87,7 +87,6 @@ public class Interfaz extends JFrame implements ActionListener {
 		tablaSimbolos = new JTable(modelo);
 		tablaDesconocidos = new JTable(modeloDesconocido);
 		tablaErrores = new JTable(modeloError);
-		tablaSemantica = new JTable(modeloSemantico);
 
 		modelo.addColumn("LEXEMA");
 		modelo.addColumn("CATEGORIA");
@@ -102,11 +101,6 @@ public class Interfaz extends JFrame implements ActionListener {
 		modeloError.addColumn("MENSAJE");
 		modeloError.addColumn("FILA");
 		modeloError.addColumn("COLUMNA");
-
-		modeloSemantico.addColumn("MENSAJE");
-		modeloSemantico.addColumn("AMBITO");
-		modeloSemantico.addColumn("FILA");
-		modeloSemantico.addColumn("COLUMNA");
 
 		JLabel lblValidos = new JLabel("TABLA DE SIMBOLOS VALIDOS");
 		lblValidos.setHorizontalAlignment(SwingConstants.CENTER);
@@ -162,14 +156,6 @@ public class Interfaz extends JFrame implements ActionListener {
 		/**
 		 * componentes tabla de errores semanticos
 		 */
-		tablaSemantica.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		tablaSemantica.setPreferredScrollableViewportSize(new Dimension(450, 63));
-		tablaSemantica.setFillsViewportHeight(true);
-
-		scrollSemantico = new JScrollPane(tablaSemantica);
-		scrollSemantico.setBounds(350, 480, 400, 100);
-		scrollSemantico.setVisible(true);
-		contentPane.add(scrollSemantico);
 
 		JLabel lblErroresSemanticos = new JLabel("TABLA DE ERRORES SEMANTICOS");
 		lblErroresSemanticos.setHorizontalAlignment(SwingConstants.CENTER);
@@ -182,7 +168,6 @@ public class Interfaz extends JFrame implements ActionListener {
 		arbolVisual = new JTree();
 		scrollSintactico = new JScrollPane(arbolVisual);
 		scrollSintactico.setBounds(400, 20, 300, 380);
-		contentPane.add(scrollSintactico);
 
 		/**
 		 * Pestañas
@@ -192,12 +177,28 @@ public class Interfaz extends JFrame implements ActionListener {
 		pestanias.add("SIMBOLOS VALIDOS", scrollTSimbolos);
 		pestanias.add("SIMBOLOS DESCONOCIDOS", scrollTDesconocidos);
 		pestanias.add("ERRORES SINTACTICOS", scrollTErrores);
-		pestanias.add("ERRORES SEMANTICOS", scrollSemantico);
 
 		scrollPestanias = new JScrollPane(pestanias);
 		scrollPestanias.setBounds(20, 420, 700, 150);
 		scrollPestanias.setVisible(true);
 		contentPane.add(scrollPestanias);
+
+		jAreaSemantica = new JTextArea();
+		jAreaSemantica.setBounds(400, 20, 330, 380);
+
+		scrollSemantico = new JScrollPane(jAreaSemantica);
+		scrollSemantico.setBounds(400, 20, 330, 380);
+		scrollSemantico.setVisible(true);
+		contentPane.add(scrollSemantico);
+
+		pestanias2 = new JTabbedPane();
+		pestanias2.add("ARBOL SINTACTICO", scrollSintactico);
+		pestanias2.add("ERRORES SEMANTICOS", scrollSemantico);
+
+		scrollPestanias2 = new JScrollPane(pestanias2);
+		scrollPestanias2.setBounds(400, 20, 330, 380);
+		scrollPestanias2.setVisible(true);
+		contentPane.add(scrollPestanias2);
 
 		/**
 		 * Botones
@@ -221,7 +222,7 @@ public class Interfaz extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnLimpiar) {
-			jArea.setText("");
+			jAreaSemantica.setText("");
 			modelo.setRowCount(0);
 			modeloDesconocido.setRowCount(0);
 			modeloError.setRowCount(0);
@@ -301,14 +302,9 @@ public class Interfaz extends JFrame implements ActionListener {
 			modeloError.addRow(fila1);
 		}
 
-		listaSemantica = analizadorSemantico.getTablaSimbolos().getListaSimbolos();
+		listaSemantica = analizadorSemantico.getErroresSemanticos();
 		for (int i = 0; i < listaSemantica.size(); i++) {
-			fila[0] = listaSemantica.get(i).getNombre();
-			fila[1] = listaSemantica.get(i).getAmbito();
-			fila[2] = listaSemantica.get(i).getFila();
-			fila[3] = listaSemantica.get(i).getColumna();
-
-			modeloSemantico.addRow(fila);
+			jAreaSemantica.setText(listaSemantica.get(i).toString());
 		}
 
 	}

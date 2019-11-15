@@ -29,11 +29,13 @@ public class TablaSimbolos {
 
 		Simbolo s = buscarSimboloVariable(nombre, ambito, fila, columna);
 
-		if (s == null) {
-			Simbolo nuevo = new Simbolo(nombre, tipo, fila, columna, ambito, expresion);
-			listaSimbolos.add(nuevo);
+			if (s == null) {
 
-			return nuevo;
+				Simbolo nuevo = new Simbolo(nombre, tipo, fila, columna, ambito, expresion);
+				listaSimbolos.add(nuevo);
+
+				return nuevo;
+			
 		} else {
 			listaErrores.add("La variable " + nombre + " ya existe en el ambito " + ambito);
 		}
@@ -54,7 +56,7 @@ public class TablaSimbolos {
 
 			return nuevo;
 		} else {
-			listaErrores.add("La función " + nombre + " ya existe");
+			listaErrores.add("La funcion " + nombre + " ya existe");
 		}
 
 		return null;
